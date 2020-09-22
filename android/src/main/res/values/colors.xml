@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="normal" type="color">#3454F6</item>
+    <item name="urgente" type="color">#F5A623</item>
+</resources>
