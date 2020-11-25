@@ -192,6 +192,7 @@ public class FlutterFirebaseMessagingService extends FirebaseMessagingService {
               .setContentTitle(remoteMessage.getData().get("title"))
               .setContentText(remoteMessage.getData().get("body"))
               .setAutoCancel(true)
+              .setOngoing(true)
               .setPriority(Build.VERSION.SDK_INT <= Build.VERSION_CODES.N_MR1 ? NotificationCompat.PRIORITY_MAX : NotificationManager.IMPORTANCE_HIGH)
               .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
               .setCategory(NotificationCompat.CATEGORY_CALL)
@@ -201,12 +202,15 @@ public class FlutterFirebaseMessagingService extends FirebaseMessagingService {
               .setFullScreenIntent(pendingIntent, true);
 
             Notification mNotification = notificationBuilder.build();
-            mNotification.flags |= Notification.FLAG_INSISTENT;
+            mNotification.flags |= Notification.FLAG_INSISTENT | Notification.FLAG_ONGOING_EVENT | Notification.FLAG_AUTO_CANCEL;
 
             notificationManager.notify(7087, mNotification);
             break;
           default:
             sendDefaultNotification(this, remoteMessage);
+            if(remoteMessage.getData().get("event") == "call_missed") {
+              notificationManager.cancel(7087);
+            }
             break;
         }
       } catch (Exception e) {

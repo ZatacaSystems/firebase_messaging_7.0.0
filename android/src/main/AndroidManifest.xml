@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="io.flutter.plugins.firebasemessaging">
 
+  <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+
   <application>
     <service android:name=".FlutterFirebaseMessagingService">
       <intent-filter>
