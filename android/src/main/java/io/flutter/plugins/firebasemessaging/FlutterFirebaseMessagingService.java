@@ -192,7 +192,7 @@ public class FlutterFirebaseMessagingService extends FirebaseMessagingService {
               .setContentTitle(remoteMessage.getData().get("title"))
               .setContentText(remoteMessage.getData().get("body"))
               .setAutoCancel(true)
-              .setPriority(NotificationCompat.PRIORITY_MAX)
+              .setPriority(Build.VERSION.SDK_INT <= Build.VERSION_CODES.N_MR1 ? NotificationCompat.PRIORITY_MAX : NotificationManager.IMPORTANCE_HIGH)
               .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
               .setCategory(NotificationCompat.CATEGORY_CALL)
               .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE))
@@ -247,7 +247,7 @@ public class FlutterFirebaseMessagingService extends FirebaseMessagingService {
       .setContentTitle(remoteMessage.getData().get("title"))
       .setContentText(remoteMessage.getData().get("body"))
       .setAutoCancel(true)
-      .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+      .setPriority(Build.VERSION.SDK_INT <= Build.VERSION_CODES.N_MR1 ? NotificationCompat.PRIORITY_DEFAULT : NotificationManager.IMPORTANCE_DEFAULT)
       .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
       .setContentIntent(pendingIntent);
 
